@@ -91,16 +91,18 @@ Use this project responsibly and only in controlled environments (e.g., local ma
    cd PAYGoat
    ```
 
-2. **Install dependencies:**
+2. **Run in windows**
    ```bash
-   npm run install
+   .\runner.bat
    ```
 
-3. **Run lab**
+3. **Run in Linux**
 
    ```bash
-   npm start
+   chmod +x ./runner.sh
+   ./runner.sh
    ```
+   
 ---
 
 ## 📜 License
