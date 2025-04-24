@@ -137,7 +137,9 @@ Contributions welcome!
 If you have any questions, issues, or suggestions, feel free to write in our Telegram group, you're welcome to join!
 
 <p align="center">
-  <img src="images/telegram.png" alt="Logo" />
+  <a href="https://t.me/xPayGoat">
+    <img src="images/telegram.png" alt="Telegram" />
+  </a>
 </p>
 
 ---
