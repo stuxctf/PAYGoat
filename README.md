@@ -81,6 +81,21 @@ Use this project responsibly and only in controlled environments (e.g., local ma
 
 ---
 
+## 🛠️ How It Works
+
+The application is divided into two main parts:
+
+- Backend: runs on port 3000
+- Frontend: runs on port 8000
+
+This allows for:
+
+- Performing security testing directly on the API using tools like Postman with Burp Suite.
+- Using the interactive Swagger documentation to explore and test the available endpoints (/api-docs).
+- Creating a mobile application that consumes these services, enabling security testing in mobile environments as well (this could be implemented later).
+
+---
+
 ## 🛠️ Installation
 
 > ⚠️ PAYGoat is intended for local use only. Do **not** expose it to the public internet.
@@ -102,7 +117,12 @@ Use this project responsibly and only in controlled environments (e.g., local ma
    chmod +x ./runner.sh
    ./runner.sh
    ```
-   
+---
+
+## 🧠 Next Steps
+
+For now, the focus is on a personal banking system. There are plans to add a business banking module with different user roles, which will allow simulating and exploiting more complex vulnerabilities related to permission management and business logic.
+
 ---
 
 ## 📜 License
