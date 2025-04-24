@@ -1,4 +1,4 @@
-# User Enumeration via Phone Number
+# OTP Brute-Force Attack
 
 🛡️ **OWASP Category:** A07:2021 - Identification and Authentication Failures 
 🧩 **CWE Category:** CWE-307: Improper Restriction of Excessive Authentication Attempts
