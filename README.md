@@ -81,7 +81,7 @@ Use this project responsibly and only in controlled environments (e.g., local ma
 
 ---
 
-## 🛠️ How It Works
+## ✒️ How It Works
 
 The application is divided into two main parts:
 
@@ -129,6 +129,16 @@ For now, the focus is on a personal banking system. There are plans to add a bus
 
 MIT License — feel free to use, fork, and improve.  
 Contributions welcome!
+
+---
+
+## 📫 Contact
+
+If you have any questions, issues, or suggestions, feel free to write in our Telegram group, you're welcome to join!
+
+<p align="center">
+  <img src="images/telegram.png" alt="Logo" />
+</p>
 
 ---
 
