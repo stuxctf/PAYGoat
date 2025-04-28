@@ -9,7 +9,7 @@
 [![Contributors](https://img.shields.io/github/contributors/stuxctf/PAYGoat.svg?style=for-the-badge)](https://github.com/stuxctf/PAYGoat/graphs/contributors)
 [![Forks](https://img.shields.io/github/forks/stuxctf/PAYGoat.svg?style=for-the-badge)](https://github.com/stuxctf/PAYGoat/network/members)
 [![Stargazers](https://img.shields.io/github/stars/stuxctf/PAYGoat.svg?style=for-the-badge)](https://github.com/stuxctf/PAYGoat/stargazers)
-[![Issues](https://img.shields.io/github/issues/stuxctf/PAYGoat.svg?style=for-the-badge)](https://github.com/stuxctf/PAYGoat/issues)
+[![Issues](https://img.shields.io/github/issues/stuxctf/PAYGoat.svg?style=for-the-badge)](https://github.com/stuxctf/PAYGoat/issues) 
 
 ---
 ## 📜 Introduction
