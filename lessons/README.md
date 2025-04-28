@@ -21,7 +21,7 @@ Some cases are not yet documented 😉 — feel free to explore the application 
 - [View Information of Other Accounts](./06_view_information_of_other_accounts.md)
 - [Negative Numbers in Third-Party Transactions](./07_negative_numbers_in_third-party_transfers.md)
 - [Currency Exchange Rate Manipulation](./08_currency_exchange_rate_manipulation.md)
-- [Account Swapping in Transfers](./09_account_swapping_in_ransfers.md_)
+- [Account Swapping in Transfers](./09_account_swapping_in_ransfers.md)
 - [Transfer Using Other User Accounts (UUID Swap)](./10_unauthorized_account_swap_in_third_party_transfers_using_uuid.md)
 - [Access to Other Users' Cards via Insecure Encryption](./11_access_to_other_users_cards_via_insecure_encryption.md)
 - [Race Condition on Loan Requests](./12_race_condition_in_loan_requests.md)
