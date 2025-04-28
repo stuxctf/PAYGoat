@@ -18,12 +18,16 @@ This allows an attacker to perform **user enumeration** by automating OTP reques
 To replicate this vulnerability in the lab environment, follow these steps:
 
 1. Navigate to the **Forgot Password** feature in the application.
-2. Enter any valid or dummy phone number and intercept the request using **Burp Suite**.
+
 ![phone](img/img001.png)
+
+2. Enter any valid or dummy phone number and intercept the request using **Burp Suite**.
+
+![sendopt](img/img004.png)
 
 3. Send the intercepted request to **Intruder**.
 
-![sendopt](img/img004.png)
+![positions](img/img005.png)
 
 4. Identify the phone number field as the attack position (use § markers).
 
@@ -34,13 +38,13 @@ To replicate this vulnerability in the lab environment, follow these steps:
    - Load a list of leaked or common phone numbers.
    - Unmark Payload encoding, If the application does not interpret URL encoding it will return some kind of error. 
 
-![list](img/img009.png)
+![list](img/img008.png)
 
 6. Start the attack.
 7. Observe the responses:
    - Different status codes, messages, or response lengths may reveal which numbers are valid.
 
-![enum](img/img010.png)
+![enum](img/img009.png)
 
 ---
 

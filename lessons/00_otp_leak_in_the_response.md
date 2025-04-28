@@ -29,7 +29,7 @@ To replicate this vulnerability in the lab environment, follow these steps:
 
 
 2. ⚙️ **Capture the OTP request**  
-   - Enter a valid phone number (use your own test account).
+   - Enter a valid phone number (use your own test account or dummy data).
    - Intercept the request where the OTP is generated and sent.
    - Rigth-click and use the option: Do intercept -> Response to this request
 
