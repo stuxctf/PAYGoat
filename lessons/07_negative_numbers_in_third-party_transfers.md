@@ -37,3 +37,8 @@ To replicate this vulnerability in the lab environment, follow these steps:
 **Business logic abuse** — users can manipulate transactions to receive money instead of sending it, resulting in unauthorized fund increases.
 
 ---
+
+## 📚 References
+
+- [Airport software allowed negative tip to cancel charge.](https://www.reddit.com/r/interestingasfuck/comments/10ys42d/airport_software_allowed_negative_tip_to_cancel/)
+
