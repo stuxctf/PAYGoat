@@ -1,0 +1,515 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PAYGoat API",
+    "description": "API vulnerable a lógica de negocio para el proyecto PAYGoat",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Autenticación y Perfil",
+      "description": "Endpoints relacionados con autenticación y gestión de perfiles"
+    },
+    {
+      "name": "Transacciones",
+      "description": "Endpoints para realizar transacciones financieras"
+    },
+    {
+      "name": "Consultas",
+      "description": "Endpoints para consultar información"
+    },
+    {
+      "name": "OTP",
+      "description": "Endpoints para manejo de One-Time Password (OTP)"
+    },
+    {
+      "name": "Créditos",
+      "description": "Endpoints para gestión de préstamos y créditos"
+    }
+  ],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags": ["Autenticación y Perfil"],
+        "summary": "Registrar un nuevo usuario",
+        "description": "Registra un nuevo usuario y le asigna datos automáticamente.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": { "type": "string", "example": "johndoe" },
+                  "firstname": { "type": "string", "example": "John" },
+                  "lastname": { "type": "string", "example": "Doe" },
+                  "password": { "type": "string", "example": "password123" }
+                },
+                "required": ["username", "firstname", "lastname", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Usuario registrado exitosamente" },
+          "400": { "description": "Solicitud inválida" }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["Autenticación y Perfil"],
+        "summary": "Iniciar sesión",
+        "description": "Permite a un usuario iniciar sesión en el sistema.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": { "type": "string", "example": "johndoe" },
+                  "password": { "type": "string", "example": "password123" }
+                },
+                "required": ["username", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { 
+            "description": "Login exitoso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": { "type": "string", "description": "JWT token para autenticación" }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "description": "Credenciales incorrectas" },
+          "404": { "description": "Usuario no encontrado" }
+        }
+      }
+    },
+    "/user/account": {
+      "delete": {
+        "tags": ["Autenticación y Perfil"],
+        "summary": "Eliminar cuenta de usuario",
+        "description": "Elimina permanentemente la cuenta del usuario autenticado.",
+        "security": [{"bearerAuth": []}],
+        "responses": {
+          "200": { "description": "Cuenta eliminada exitosamente" },
+          "400": { "description": "No se pudo eliminar la cuenta" },
+          "401": { "description": "No autorizado" },
+          "404": { "description": "Usuario no encontrado" }
+        }
+      }
+    },
+    "/user/profile/{userID}": {
+      "get": {
+        "tags": ["Autenticación y Perfil"],
+        "summary": "Consultar perfil de usuario",
+        "description": "Devuelve toda la información del perfil de un usuario, incluyendo la contraseña.",
+        "security": [{"bearerAuth": []}],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1
+            },
+            "description": "ID del usuario a consultar."
+          },
+          {
+            "name": "paygoat-nivel",
+            "in": "header",
+            "required": true,
+            "description": "Encabezado personalizado para la solicitud",
+            "schema": {
+              "type": "string",
+              "example": "practice"
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Perfil de usuario encontrado" },
+          "404": { "description": "Usuario no encontrado" }
+        }
+      },
+      "put": {
+        "tags": ["Autenticación y Perfil"],
+        "summary": "Actualizar perfil de usuario",
+        "description": "Permite actualizar el perfil del usuario especificado. Se puede actualizar información básica o la contraseña.",
+        "security": [{"bearerAuth": []}],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1
+            },
+            "description": "ID del usuario a actualizar."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "firstname": { "type": "string", "example": "John" },
+                      "lastname": { "type": "string", "example": "Doe" }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "password": { "type": "string", "example": "nuevaPassword123" }
+                    },
+                    "required": ["password"]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Perfil actualizado exitosamente" },
+          "400": { "description": "No se pudo actualizar el perfil" }
+        }
+      }
+    },
+    "/user/profile/{userID}/password": {
+      "put": {
+        "tags": ["Autenticación y Perfil"],
+        "summary": "Actualizar contraseña de usuario",
+        "description": "Permite actualizar únicamente la contraseña del usuario especificado.",
+        "security": [{"bearerAuth": []}],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1
+            },
+            "description": "ID del usuario cuya contraseña se actualizará."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": { "type": "string", "example": "nuevaPassword123" }
+                },
+                "required": ["password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Contraseña actualizada exitosamente" },
+          "400": { "description": "No se pudo actualizar la contraseña" }
+        }
+      }
+    },
+    "/user/reset-password": {
+      "post": {
+        "tags": ["Autenticación y Perfil"],
+        "summary": "Restablecer contraseña con OTP",
+        "description": "Permite restablecer la contraseña usando un código OTP enviado al número de teléfono registrado.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phoneNumber": { "type": "string", "example": "+51987654321", "description": "Número de teléfono registrado" },
+                  "otp": { "type": "string", "example": "123456", "description": "Código OTP recibido" },
+                  "newPassword": { "type": "string", "example": "nuevaPassword123", "description": "Nueva contraseña" }
+                },
+                "required": ["phoneNumber", "otp", "newPassword"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Contraseña restablecida exitosamente" },
+          "400": { "description": "Código OTP inválido o solicitud incorrecta" },
+          "404": { "description": "Usuario no encontrado" }
+        }
+      }
+    },
+    "/otp/send": {
+      "post": {
+        "tags": ["OTP"],
+        "summary": "Enviar código OTP",
+        "description": "Envía un código OTP al número de teléfono proporcionado para verificación.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phoneNumber": { "type": "string", "example": "+51987654321", "description": "Número de teléfono al que se enviará el OTP" }
+                },
+                "required": ["phoneNumber"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Código OTP enviado exitosamente" },
+          "400": { "description": "Número de teléfono inválido" },
+          "429": { "description": "Demasiados intentos, por favor espere antes de solicitar otro OTP" }
+        }
+      }
+    },
+    "/bank/loan/request": {
+      "post": {
+        "tags": ["Créditos"],
+        "summary": "Solicitar un préstamo",
+        "description": "El usuario solicita un préstamo. Solo se permiten 2 préstamos por usuario y el monto mínimo es $1000 USD.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userID": {
+                    "type": "integer",
+                    "example": 3
+                  },
+                  "amount": {
+                    "type": "number",
+                    "example": 1200
+                  }
+                },
+                "required": ["userID", "amount"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Préstamo aprobado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Préstamo aprobado y depositado"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Datos incompletos o monto no permitido"
+          },
+          "403": {
+            "description": "Usuario ya tiene el número máximo de préstamos"
+          },
+          "500": {
+            "description": "Error interno del servidor"
+          }
+        }
+      }
+    },
+    "/bank/loan/user": {
+      "get": {
+        "tags": ["Créditos"],
+        "summary": "Obtener préstamos del usuario",
+        "description": "Devuelve todos los préstamos solicitados por el usuario.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 3
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de préstamos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "loans": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "loanID": {
+                            "type": "integer",
+                            "example": 1
+                          },
+                          "userID": {
+                            "type": "integer",
+                            "example": 3
+                          },
+                          "amount": {
+                            "type": "number",
+                            "example": 1200.5
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "approved"
+                          },
+                          "timestamp": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falta el parámetro userID"
+          },
+          "500": {
+            "description": "Error interno al obtener préstamos"
+          }
+        }
+      }
+    },
+    "/payment/transfer": {
+      "post": {
+        "tags": ["Transacciones"],
+        "summary": "Realizar transferencia de fondos",
+        "description": "Permite realizar una transferencia entre dos cuentas con conversión de divisas.",
+        "security": [{"bearerAuth": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "senderAccountNumber": { "type": "string", "example": "1234567890" },
+                  "recipientAccountNumber": { "type": "string", "example": "0987654321" },
+                  "amount": { "type": "number", "example": 100 },
+                  "currencyFrom": { "type": "string", "example": "USD" },
+                  "currencyTo": { "type": "string", "example": "EUR" },
+                  "rate": { "type": "number", "example": 2.0 }
+                },
+                "required": ["senderAccountNumber", "recipientAccountNumber", "amount", "currencyFrom", "currencyTo", "rate"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Transferencia realizada exitosamente" },
+          "400": { "description": "Fondos insuficientes o solicitud inválida" },
+          "404": { "description": "Usuario no encontrado" },
+          "500": { "description": "Error en la transferencia" }
+        }
+      }
+    },
+    "/payment/transferthirdparties": {
+      "post": {
+        "tags": ["Transacciones"],
+        "summary": "Transferencia a cuentas de terceros",
+        "description": "Permite realizar transferencias a cuentas externas al sistema.",
+        "security": [{"bearerAuth": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "senderAccountNumber": { "type": "string", "example": "1234567890" },
+                  "recipientAccountNumber": { "type": "string", "example": "EXTERNAL12345" },
+                  "amount": { "type": "number", "example": 100 }
+                },
+                "required": ["senderAccountNumber", "recipientAccountNumber", "recipientBankCode", "amount", "currency"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Transferencia a terceros realizada exitosamente" },
+          "400": { "description": "Fondos insuficientes o solicitud inválida" },
+          "404": { "description": "Cuenta no encontrada" },
+          "500": { "description": "Error en la transferencia" }
+        }
+      }
+    },
+    "/bank/account": {
+      "post": {
+        "tags": ["Consultas"],
+        "summary": "Consultar detalles de cuenta del usuario",
+        "description": "Obtiene los detalles de las cuentas del usuario, como saldo en USD y EUR.",
+        "security": [{"bearerAuth": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userID": {
+                    "type": "integer",
+                    "example": 1
+                  }
+                },
+                "required": ["userID"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Datos de cuenta obtenidos exitosamente" },
+          "400": { "description": "ID de usuario no proporcionado" },
+          "404": { "description": "Usuario no encontrado" },
+          "500": { "description": "Error al obtener los datos de la cuenta" }
+        }
+      }
+    }
+  }
+}
