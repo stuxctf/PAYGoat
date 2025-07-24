@@ -100,6 +100,24 @@ This allows for:
 
 > ⚠️ PAYGoat is intended for local use only. Do **not** expose it to the public internet.
 
+### With Docker
+
+1. **Install Docker**
+
+   Follow the official instructions to install Docker on your system: [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
+
+2. **Run the application**
+
+   ```bash
+   git clone https://github.com/stuxctf/PAYGoat
+   cd PAYGoat
+   docker-compose up --build
+   ```
+
+   The frontend will be available at http://localhost:8000 and the backend at http://localhost:3000.
+
+### Manual Installation
+
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/stuxctf/PAYGoat
