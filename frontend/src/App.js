@@ -15,6 +15,7 @@ import TransactionHistory from './components/Dashboard/TransactionHistory'
 import UserLoans from './components/Dashboard/UserLoans'
 import LoanRequest from './components/Dashboard/UserRequestLoans'
 import GetCreditCard from './components/Dashboard/CreditCard'
+import Support from './components/Dashboard/Tickets'
 
 const PrivateRoute = ({ component: Component }) => {
   const isAuthenticated = !!localStorage.getItem('token');
@@ -40,6 +41,8 @@ const App = () => {
         <Route path="/request-loans" element={<LoanRequest />} />
         <Route path="/my-loans" element={<UserLoans />} />
         <Route path="/cards" element={<GetCreditCard />} />
+        <Route path="/tickets" element={<Support />} />
+         <Route path="/tickets/:id" element={<Support />} />
         <Route path="/" element={<Navigate to="/login" />} />
       </Routes>
     </Router>

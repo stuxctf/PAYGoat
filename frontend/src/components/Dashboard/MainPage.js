@@ -20,7 +20,7 @@ const MainPage = () => {
         <h4 className="mb-4">Menú</h4>
 
         <Link to="/profile" className="btn btn-outline-light mb-2 text-start">
-          <i className="bi bi-person-circle me-2"></i> Profile
+          <i className="bi bi-person-circle me-2"></i> Ver Perfil
         </Link>
 
         {/* Mis Cuentas */}
@@ -28,16 +28,16 @@ const MainPage = () => {
           className="btn btn-outline-light mb-2 text-start"
           onClick={() => setShowAccountsSubmenu(!showAccountsSubmenu)}
         >
-          <i className="bi bi-wallet2 me-2"></i> My Accounts
+          <i className="bi bi-wallet2 me-2"></i> Mis Cuentas
         </button>
 
         {showAccountsSubmenu && (
           <div className="ms-3 mb-2">
             <Link to="/account-details" className="btn btn-sm btn-outline-light d-block mb-1 text-start">
-              <i className="bi bi-info-circle me-2"></i> Details
+              <i className="bi bi-info-circle me-2"></i> Detalles
             </Link>
             <Link to="/account-history" className="btn btn-sm btn-outline-light d-block text-start">
-              <i className="bi bi-clock-history me-2"></i> History
+              <i className="bi bi-clock-history me-2"></i> Historial
             </Link>
           </div>
         )}
@@ -47,7 +47,7 @@ const MainPage = () => {
           className="btn btn-outline-light mb-2 text-start"
           onClick={() => setShowTransacctionsSubmenu(!ShowTransacctionsSubmenu)}
         >
-          <i className="bi bi-wallet2 me-2"></i> Transactions
+          <i className="bi bi-wallet2 me-2"></i> Transacciones
         </button>
 
         {ShowTransacctionsSubmenu && (
@@ -71,38 +71,43 @@ const MainPage = () => {
           className="btn btn-outline-light mb-2 text-start"
           onClick={() => setShowCreditsSubmenu(!showCreditsSubmenu)}
         >
-          <i className="bi bi-cash-coin me-2"></i> Loans
+          <i className="bi bi-cash-coin me-2"></i> Créditos
         </button>
 
         {showCreditsSubmenu && (
           <div className="ms-3 mb-2">
             <Link to="/request-loans" className="btn btn-sm btn-outline-light d-block mb-1 text-start">
-              <i className="bi bi-file-earmark-text me-2"></i> Request Loans
+              <i className="bi bi-file-earmark-text me-2"></i> Solicitar Crédito
             </Link>
             <Link to="/my-loans" className="btn btn-sm btn-outline-light d-block mb-1 text-start">
-              <i className="bi bi-journal-check me-2"></i> My Loans
+              <i className="bi bi-journal-check me-2"></i> Mis Créditos
             </Link>
           </div>
         )}
+
+          {/* tickets */}
+          <Link to="/tickets" className="btn btn-outline-light mb-2 text-start">
+            <i className="bi bi bi-ticket-perforated"></i> Tickets
+          </Link>
 
         {/* Configuración */}
         <button
           className="btn btn-outline-light mb-2 text-start"
           onClick={() => setShowSettingsSubmenu(!showSettingsSubmenu)}
         >
-          <i className="bi bi-gear me-2"></i> Settings 
+          <i className="bi bi-gear me-2"></i> Configuración
         </button>
 
         {showSettingsSubmenu && (
           <div className="ms-3 mb-2">
             <Link to="/update-profile" className="btn btn-sm btn-outline-light d-block mb-1 text-start">
-              <i className="bi bi-pencil-square me-2"></i> Update Profile
+              <i className="bi bi-pencil-square me-2"></i> Actualizar Perfil
             </Link>
             <Link to="/update-password" className="btn btn-sm btn-outline-light d-block mb-1 text-start">
-              <i className="bi bi-shield-lock me-2"></i> Update Password
+              <i className="bi bi-shield-lock me-2"></i> Actualizar Contraseña
             </Link>
             <Link to="/delete-account" className="btn btn-sm btn-outline-light d-block text-start">
-              <i className="bi bi-trash me-2"></i> Delete Account
+              <i className="bi bi-trash me-2"></i> Eliminar Cuenta
             </Link>
           </div>
         )}
@@ -117,7 +122,7 @@ const MainPage = () => {
       <div className="flex-grow-1 d-flex flex-column">
         {/* Encabezado superior */}
         <div className="bg-dark p-3 text-white text-center shadow">
-          <h3>Welcome to Online Banking</h3>
+          <h3>Bienvenido a tu banca en línea</h3>
         </div>
 
         {/* Contenido central */}

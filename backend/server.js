@@ -10,9 +10,11 @@ const accountRoutes = require('./routes/accountRoutes');
 const loansRoutes = require('./routes/loansRoutes');
 const optRoutes = require('./routes/otpRoutes');
 const ccRoutes = require('./routes/ccRoutes');
+const ticketRoutes = require('./routes/ticketsRoutes')
 
 const app = express();
 
+app.disable('etag');
 app.use(cors({
     origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -27,6 +29,7 @@ app.use('/user', userRoutes);
 app.use('/payment', paymentRoutes, paymentUUIDRoutes);
 app.use('/bank', accountRoutes, loansRoutes, ccRoutes)
 app.use('/otp', optRoutes)
+app.use('/support', ticketRoutes)
 
 // Puerto
 const port = 3000;
