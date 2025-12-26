@@ -16,6 +16,13 @@ import UserLoans from './components/Dashboard/UserLoans'
 import LoanRequest from './components/Dashboard/UserRequestLoans'
 import GetCreditCard from './components/Dashboard/CreditCard'
 import Support from './components/Dashboard/Tickets'
+import AuditLogs from './components/Dashboard/businessAudit'
+import BusinessUsers from './components/Dashboard/BusinessUsers'
+import CompanySettings from './components/Dashboard/CompanySettings'
+import CompanyTransfers from './components/Dashboard/CompanyTransfers'
+import BunissesProfile from './components/Dashboard/BunissesProfile'
+import BusinnesAccounts from './components/Dashboard/BusinnesAccounts'
+import ApproveTransactions from './components/Dashboard/ApproveTransactions'
 
 const PrivateRoute = ({ component: Component }) => {
   const isAuthenticated = !!localStorage.getItem('token');
@@ -42,7 +49,16 @@ const App = () => {
         <Route path="/my-loans" element={<UserLoans />} />
         <Route path="/cards" element={<GetCreditCard />} />
         <Route path="/tickets" element={<Support />} />
-         <Route path="/tickets/:id" element={<Support />} />
+        <Route path="/tickets/:id" element={<Support />} />
+
+
+        <Route path="/business/accounts" element={<BusinnesAccounts />} />
+        <Route path="/business-profile" element={<BunissesProfile />} />
+        <Route path="/business/ActionsUsers" element={<BusinessUsers />} />
+        <Route path="/business/GetLogs" element={<AuditLogs />} />
+        <Route path="/business/CompanySettings" element={<CompanySettings />} />
+        <Route path="/business/approve" element={<ApproveTransactions />} />
+        <Route path="/business/transfers" element={<CompanyTransfers />} />
         <Route path="/" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
