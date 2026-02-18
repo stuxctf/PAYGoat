@@ -23,7 +23,7 @@ const {
   getCompanyUsers,
   createCompanyUser,
   deleteCompanyUser
-} = require('../controllers/businessUserscontroller');
+} = require('../controllers/businessUsersController');
 
 const {
   updateCompanySettings,
